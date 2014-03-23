@@ -29,7 +29,7 @@ class TestAccounts(unittest.TestCase):
 			]
 		}
 		"""
-		self.accounts = loadAccountsFromConfigJson(json.loads(configJson))
+		self.accounts = loadAccounts(json.loads(configJson))
 
 	def test_total_balance(self):
 		self.assertEqual(self.accounts[0].getTotalBalance(), 353.0)

@@ -2,7 +2,7 @@
 
 ## What Does It Do?
 
-Get a handle on your personal finances.
+dough helps you get a handle on your personal finances.
 
 ## Config File
 
@@ -23,6 +23,17 @@ Create a json config file that represents your finances:
 					"savings": 3856.50
 				}
 			}
+		],
+		"modifiers": [
+			{
+				"name": "Paycheck Every Two Weeks",
+				"amount": 1000.0,
+				"recurrence" : {
+					"type": "daily",
+					"start": "03/21/2014",
+					"step": 14
+				}
+			}
 		]
 	}
 
@@ -30,4 +41,8 @@ Create a json config file that represents your finances:
 
 Pass the path to the config file to dough as an argument:
 
-./dough.py my-finances.json
+	./dough.py my-finances.json
+
+dough uses argparse so run dough with -h to see a list of options that are configurable from the command line:
+
+	./dough.py -h

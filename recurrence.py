@@ -3,6 +3,17 @@
 
 import datetime
 
+from date import DATE_FORMAT
+
+
+def loadRecurrenceFromJsonObj(jsonObj):
+	if jsonObj["type"] == "daily":
+		startDate = datetime.datetime.strptime(jsonObj["start"], DATE_FORMAT).date()
+		dayStep = int(jsonObj["step"])
+		return DailyRecurrence(startDate, dayStep)
+	else:
+		raise RuntimeError("Unknown recurrence type: %s" % jsonObj["type"])
+
 
 class Recurrence(object):
 	def __init__(self, name):
@@ -10,6 +21,9 @@ class Recurrence(object):
 
 	def getDatesInRange(self, rangeStartDate, rangeEndDate):
 		raise RuntimeError("Not Yet Implemented")
+
+	def isOnDate(self, date):
+		return len(self.getDatesInRange(date, date)) == 1
 
 
 class DailyRecurrence(Recurrence):

@@ -3,10 +3,8 @@
 
 import datetime
 
+from date import DATE_FORMAT
 from date import daterange
-
-
-DATE_FORMAT = "%m/%d/%Y"
 
 
 def outputData(data, outputPath):

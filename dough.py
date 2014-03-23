@@ -4,7 +4,8 @@
 import argparse
 import datetime
 
-from account import loadAccountsFromConfigJson
+from account import loadAccounts
+from balance_modifier import loadBalanceModifiers
 from config import loadConfigJson
 from data import Data
 from engine import Engine
@@ -38,9 +39,11 @@ def main():
 
 	configJson = loadConfigJson(args.config[0])
 
-	accounts = loadAccountsFromConfigJson(configJson)
+	accounts = loadAccounts(configJson)
 
-	engine = Engine(accounts)
+	balanceModifiers = loadBalanceModifiers(configJson)
+
+	engine = Engine(accounts, balanceModifiers)
 
 	startDate = datetime.date.today()
 	endDate = startDate + datetime.timedelta(days=args.days[0])
