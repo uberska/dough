@@ -26,6 +26,14 @@ def main():
 		default=["finances.csv"],
 		help='Output file to write to.')
 
+	parser.add_argument(
+		'-d',
+		'--days',
+		nargs=1,
+		type=int,
+		default=[365],
+		help='Number of days to calculate ahead of today.')
+
 	args = parser.parse_args()
 
 	configJson = loadConfigJson(args.config[0])
@@ -35,7 +43,7 @@ def main():
 	engine = Engine(accounts)
 
 	startDate = datetime.date.today()
-	endDate = startDate + datetime.timedelta(days=100)
+	endDate = startDate + datetime.timedelta(days=args.days[0])
 
 	data = engine.execute(startDate, endDate)
 
