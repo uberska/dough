@@ -33,6 +33,14 @@ Create a json config file that represents your finances:
 					"start": "03/21/2014",
 					"step": 14
 				}
+			},
+			{
+				"name": "Car Payment On The Tenth",
+				"amount": -150.00,
+				"recurrence" : {
+					"type": "monthly",
+					"day": 10
+				}
 			}
 		]
 	}

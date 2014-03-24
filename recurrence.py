@@ -11,8 +11,18 @@ from date import pinDayToMonth
 def loadRecurrenceFromJsonObj(jsonObj):
 	if jsonObj["type"] == "daily":
 		startDate = datetime.datetime.strptime(jsonObj["start"], DATE_FORMAT).date()
+
 		dayStep = int(jsonObj["step"])
-		return DailyRecurrence(startDate, dayStep)
+
+		numOccurrences = None
+		if "occurrences" in jsonObj:
+			numOccurrences = int(jsonObj["occurrences"])
+
+		return DailyRecurrence(startDate, dayStep, numOccurrences)
+	elif jsonObj["type"] == "monthly":
+		dayOfMonth = int(jsonObj["day"])
+
+		return MonthlyRecurrence(dayOfMonth)
 	else:
 		raise RuntimeError("Unknown recurrence type: %s" % jsonObj["type"])
 
